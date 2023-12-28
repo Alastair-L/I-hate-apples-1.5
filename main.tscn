@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://d18uccwt3rf5"]
+[gd_scene load_steps=2 format=3 uid="uid://d18uccwt3rf5"]
+
+[ext_resource type="PackedScene" path="res://apple_enemy.tscn" id="1_8ugkj"]
 
 [node name="Main" type="Node"]
+
+[node name="Apple Enemy" parent="." instance=ExtResource("1_8ugkj")]
+position = Vector2(8, -7)
