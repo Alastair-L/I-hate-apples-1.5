@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d18uccwt3rf5"]
+[gd_scene load_steps=7 format=3 uid="uid://d18uccwt3rf5"]
 
 [ext_resource type="PackedScene" uid="uid://dxbg8j581t76o" path="res://Scenes/apple_enemy.tscn" id="1_u3360"]
 [ext_resource type="PackedScene" uid="uid://ftadpvplkegh" path="res://Scenes/player.tscn" id="2_d3xcy"]
 [ext_resource type="PackedScene" uid="uid://cmuq47jrfta4b" path="res://Scenes/First lvl Environ.tscn" id="4_avtny"]
+[ext_resource type="PackedScene" uid="uid://dupa5xnbrr604" path="res://hud.tscn" id="5_81hqv"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="5_rs4av"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_fs7ft"]
@@ -22,11 +23,20 @@ layer_0/navigation_enabled = false
 layer_1/navigation_enabled = false
 
 [node name="Apple Enemy" parent="." instance=ExtResource("1_u3360")]
-position = Vector2(2765, 10944)
+position = Vector2(2652, 8840)
 
 [node name="Player" parent="." instance=ExtResource("2_d3xcy")]
 position = Vector2(4940, 15104)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.05, 0.05)
 script = ExtResource("5_rs4av")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+follow_viewport_enabled = true
+
+[node name="HUD" parent="Camera2D/CanvasLayer" instance=ExtResource("5_81hqv")]
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+autostart = true
