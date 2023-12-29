@@ -94,12 +94,15 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8d0jg"]
 radius = 263.0
-height = 694.0
+height = 600.0
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_us7en")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o8khw")

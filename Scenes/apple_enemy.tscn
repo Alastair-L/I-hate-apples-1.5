@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxbg8j581t76o"]
+[gd_scene load_steps=6 format=3 uid="uid://dxbg8j581t76o"]
 
+[ext_resource type="Script" path="res://Scenes/apple_enemy.gd" id="1_0egdu"]
 [ext_resource type="Texture2D" uid="uid://dnxcpu4vkj45s" path="res://Sprites/IMG_1712.png" id="1_44agf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4e5tb"]
@@ -17,9 +18,16 @@ animations = [{
 radius = 240.0
 height = 620.0
 
-[node name="Apple Enemy" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ad4wo"]
+radius = 5000.0
+
+[node name="Apple Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent")]
 position = Vector2(525, 393)
-collision_mask = 0
+collision_layer = 0
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_0egdu")
+navigation_agent = NodePath("Node2D/NavigationAgent2D")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -29,3 +37,22 @@ sprite_frames = SubResource("SpriteFrames_4e5tb")
 position = Vector2(30.0001, -20)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5e5d")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Node2D"]
+debug_enabled = true
+
+[node name="RecalculateNavigationTimer" type="Timer" parent="Node2D"]
+wait_time = 0.05
+autostart = true
+
+[node name="DetectionRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+shape = SubResource("CircleShape2D_ad4wo")
+
+[connection signal="timeout" from="Node2D/RecalculateNavigationTimer" to="." method="set_movement_target"]
+[connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
