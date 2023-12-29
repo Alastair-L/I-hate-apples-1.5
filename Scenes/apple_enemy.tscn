@@ -23,7 +23,7 @@ radius = 5000.0
 
 [node name="Apple Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent")]
 position = Vector2(525, 393)
-collision_layer = 0
+collision_layer = 8
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_0egdu")
@@ -33,7 +33,16 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4e5tb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="NonCollidingHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="AppleShape" type="CollisionShape2D" parent="NonCollidingHitbox"]
+position = Vector2(30.0001, -20)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_v5e5d")
+
+[node name="AppleShape" type="CollisionShape2D" parent="."]
 position = Vector2(30.0001, -20)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5e5d")
@@ -54,5 +63,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
 shape = SubResource("CircleShape2D_ad4wo")
 
+[connection signal="body_entered" from="NonCollidingHitbox" to="." method="_on_non_colliding_hitbox_body_entered"]
 [connection signal="timeout" from="Node2D/RecalculateNavigationTimer" to="." method="set_movement_target"]
 [connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]

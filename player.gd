@@ -68,8 +68,6 @@ func _physics_process(delta):
 		print("I collided with ", collision_info.get_collider().name)
 		move_direction = OPPOSITES[move_direction]
 
-	#if collision_info:
-		#velocity = velocity.bounce(collision_info.get_normal())
 
 func _on_area_entered(area):
 	print("hit!", area)
@@ -80,8 +78,14 @@ func _on_area_entered(area):
 
 func _on_body_entered(body):
 	# This is either a wall or a shelf
+	print('hey!')
 	if body is TileMap:
-		print('hey!')
 		print(body.get_layers_count())
 		
 		
+
+
+func _on_hit():
+	print("I'm hit!")
+	# Play animation
+	# Give immunity for a sec

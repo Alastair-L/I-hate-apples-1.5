@@ -34,3 +34,10 @@ func _physics_process(delta):
 func _on_detection_radius_body_entered(body):
 	print(body)
 	target = body
+
+
+func _on_non_colliding_hitbox_body_entered(body):
+	print(body, body.name)
+	if body.name == "Player":
+		body.emit_signal("hit")
+		
