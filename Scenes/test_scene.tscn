@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://d18uccwt3rf5"]
+
+[ext_resource type="PackedScene" uid="uid://dxbg8j581t76o" path="res://Scenes/apple_enemy.tscn" id="1_u3360"]
+[ext_resource type="PackedScene" uid="uid://ftadpvplkegh" path="res://Scenes/player.tscn" id="2_d3xcy"]
+[ext_resource type="PackedScene" uid="uid://cmuq47jrfta4b" path="res://Scenes/First lvl Environ.tscn" id="4_avtny"]
+[ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="5_rs4av"]
+
+[node name="Test Scene" type="Node"]
+
+[node name="FirstLevelEnviron" parent="." instance=ExtResource("4_avtny")]
+
+[node name="Apple Enemy" parent="." instance=ExtResource("1_u3360")]
+position = Vector2(366, 354)
+
+[node name="Player" parent="." instance=ExtResource("2_d3xcy")]
+position = Vector2(881, -449)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.05, 0.05)
+script = ExtResource("5_rs4av")
