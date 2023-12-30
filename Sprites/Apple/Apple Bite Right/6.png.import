@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lfog2uvxvtgr"
-path="res://.godot/imported/2.png-d7e1765f000d2025d433d0c197b25cb6.ctex"
+uid="uid://cuslmf37ve7t6"
+path="res://.godot/imported/6.png-6474ba6e24fecaedc9f70b6e1483cab6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Apple/Apple Bite/2.png"
-dest_files=["res://.godot/imported/2.png-d7e1765f000d2025d433d0c197b25cb6.ctex"]
+source_file="res://Sprites/Apple/Apple Bite Right/6.png"
+dest_files=["res://.godot/imported/6.png-6474ba6e24fecaedc9f70b6e1483cab6.ctex"]
 
 [params]
 
