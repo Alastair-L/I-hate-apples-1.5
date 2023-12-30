@@ -1,10 +1,120 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxbg8j581t76o"]
+[gd_scene load_steps=27 format=3 uid="uid://dxbg8j581t76o"]
 
 [ext_resource type="Script" path="res://Scenes/apple_enemy.gd" id="1_0egdu"]
 [ext_resource type="Texture2D" uid="uid://dnxcpu4vkj45s" path="res://Sprites/IMG_1712.png" id="1_44agf"]
+[ext_resource type="Texture2D" uid="uid://c28if3347alwn" path="res://Sprites/Apple/Apple Awake/1.png" id="2_207rx"]
+[ext_resource type="Texture2D" uid="uid://b3io0dpi084sv" path="res://Sprites/Apple/Apple Bite/1.png" id="3_kv3h1"]
+[ext_resource type="Texture2D" uid="uid://lfog2uvxvtgr" path="res://Sprites/Apple/Apple Bite/2.png" id="4_24hia"]
+[ext_resource type="Texture2D" uid="uid://efibixg4ssxb" path="res://Sprites/Apple/Apple Bite/3.png" id="5_xus6j"]
+[ext_resource type="Texture2D" uid="uid://dua77aj6n3qeb" path="res://Sprites/Apple/Apple Bite/4.png" id="6_upj1c"]
+[ext_resource type="Texture2D" uid="uid://djs73tyo00xt8" path="res://Sprites/Apple/Apple Bite/5.png" id="7_qxg4f"]
+[ext_resource type="Texture2D" uid="uid://byiuhe4e5la7u" path="res://Sprites/Apple/Apple Waddle/1.png" id="8_ncde5"]
+[ext_resource type="Texture2D" uid="uid://c4k0so338q3yd" path="res://Sprites/Apple/Apple Waddle/2.png" id="9_e2b5v"]
+[ext_resource type="Texture2D" uid="uid://bdqr32n1xsqv2" path="res://Sprites/Apple/Apple Waddle/3.png" id="10_v35c4"]
+[ext_resource type="Texture2D" uid="uid://cgx0p7lkaot08" path="res://Sprites/Apple/Apple Waddle/4.png" id="11_jbvqt"]
+[ext_resource type="Texture2D" uid="uid://cbe4fl7p5fhhl" path="res://Sprites/Apple/Apple Waddle/5.png" id="12_ffq05"]
+[ext_resource type="Texture2D" uid="uid://cnap3dfu6ph1p" path="res://Sprites/Apple/Apple Waddle/6.png" id="13_4qovp"]
+[ext_resource type="Texture2D" uid="uid://bo2mbj52btrpv" path="res://Sprites/Apple/Apple Waddle/7.png" id="14_q1lkx"]
+[ext_resource type="Texture2D" uid="uid://eco5jlbwk3gx" path="res://Sprites/Apple/Apple Waddle/8.png" id="15_em42e"]
+[ext_resource type="Texture2D" uid="uid://b6l1h5sdb7nsw" path="res://Sprites/Apple/Apple Awake/2.png" id="16_7bv0v"]
+[ext_resource type="Texture2D" uid="uid://cohiiofgrjgd2" path="res://Sprites/Apple/Apple Awake/3.png" id="17_sr7ss"]
+[ext_resource type="Texture2D" uid="uid://b7sjj7kxgqxhj" path="res://Sprites/Apple/Apple Awake/4.png" id="18_rve6q"]
+[ext_resource type="Texture2D" uid="uid://df7yaacrhfgxl" path="res://Sprites/Apple/Apple Awake/5.png" id="19_3f5gp"]
+[ext_resource type="Texture2D" uid="uid://h5wmxtn5rvqq" path="res://Sprites/Apple/Apple Awake/6.png" id="20_24jja"]
+[ext_resource type="Texture2D" uid="uid://c6v6vt4vexyo7" path="res://Sprites/Apple/Apple Awake/7.png" id="21_jb181"]
+[ext_resource type="Texture2D" uid="uid://btv8nu285uum2" path="res://Sprites/Apple/Apple Awake/8.png" id="22_nto2a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4e5tb"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_207rx")
+}],
+"loop": true,
+"name": &"Asleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kv3h1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_24hia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xus6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xus6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_upj1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qxg4f")
+}],
+"loop": true,
+"name": &"Bite",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ncde5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_e2b5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_v35c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jbvqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ffq05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_4qovp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_q1lkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_em42e")
+}],
+"loop": true,
+"name": &"Waddle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_207rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7bv0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_sr7ss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_rve6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3f5gp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_24jja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_jb181")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_nto2a")
+}],
+"loop": true,
+"name": &"Wake",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_44agf")
@@ -32,6 +142,8 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4e5tb")
+animation = &"Bite"
+frame_progress = 0.049486
 
 [node name="NonCollidingHitbox" type="Area2D" parent="."]
 collision_layer = 0
