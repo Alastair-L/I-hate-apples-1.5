@@ -39,18 +39,33 @@ func _on_awake_radius_body_entered(body):
 	# No target = asleep
 	if !target:
 		$AnimatedSprite2D.play("Wake")
+		# Note this could also fire when the Bite animation finishes.
 		await $AnimatedSprite2D.animation_finished
 		# Note that there's a "bug" here where the wake animation will restart if you
 		# Go in and out of the radius
 		target = body
 		$AnimatedSprite2D.play("Waddle")
 
+func _on_charge_radius_body_entered(body):
+	if body.name != "Player":
+		return
+	
+	# Looks silly to bite here
+	if abs(body.position.x - position.x) < 300:
+		return
+	
+	if body.position.x > position.x:
+		velocity = Vector2(30 * WADDLE_SPEED, 0)
+		$AnimatedSprite2D.play("Bite Right")
+	else:	
+		$AnimatedSprite2D.play("Bite Left")
+		velocity = Vector2(-30 * WADDLE_SPEED, 0)
+	
+	move_and_slide()
+	await $AnimatedSprite2D.animation_finished
+	$AnimatedSprite2D.play("Waddle")
+	
 
 func _on_non_colliding_hitbox_body_entered(body):
 	if body.name == "Player":
 		body.emit_signal("hit")
-
-
-func _on_charge_radius_body_entered(body):
-	pass
-	# Charge
