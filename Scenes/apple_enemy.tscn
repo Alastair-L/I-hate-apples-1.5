@@ -1,16 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://dxbg8j581t76o"]
+[gd_scene load_steps=29 format=3 uid="uid://dxbg8j581t76o"]
 
 [ext_resource type="Script" path="res://Scenes/apple_enemy.gd" id="1_0egdu"]
 [ext_resource type="Texture2D" uid="uid://dnxcpu4vkj45s" path="res://Sprites/IMG_1712.png" id="1_44agf"]
 [ext_resource type="Texture2D" uid="uid://c28if3347alwn" path="res://Sprites/Apple/Apple Awake/1.png" id="2_207rx"]
-[ext_resource type="Texture2D" path="res://Sprites/Apple/Apple Bite/1.png" id="3_kv3h1"]
-[ext_resource type="Texture2D" path="res://Sprites/Apple/Apple Bite/2.png" id="4_24hia"]
-[ext_resource type="Texture2D" path="res://Sprites/Apple/Apple Bite/6.png" id="5_hg8p1"]
-[ext_resource type="Texture2D" path="res://Sprites/Apple/Apple Bite/3.png" id="5_xus6j"]
-[ext_resource type="Texture2D" path="res://Sprites/Apple/Apple Bite/4.png" id="6_upj1c"]
-[ext_resource type="Texture2D" path="res://Sprites/Apple/Apple Bite/5.png" id="7_qxg4f"]
 [ext_resource type="Texture2D" uid="uid://byiuhe4e5la7u" path="res://Sprites/Apple/Apple Waddle/1.png" id="8_ncde5"]
-[ext_resource type="Texture2D" path="res://Sprites/Apple/Apple Bite/7.png" id="8_orw22"]
 [ext_resource type="Texture2D" uid="uid://c4k0so338q3yd" path="res://Sprites/Apple/Apple Waddle/2.png" id="9_e2b5v"]
 [ext_resource type="Texture2D" uid="uid://b6fubdnxeo6e7" path="res://Sprites/Apple/Apple Bite Right/1.png" id="10_o8tcj"]
 [ext_resource type="Texture2D" uid="uid://bdqr32n1xsqv2" path="res://Sprites/Apple/Apple Waddle/3.png" id="10_v35c4"]
@@ -45,31 +38,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_kv3h1")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_24hia")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_hg8p1")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_xus6j")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_xus6j")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_upj1c")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_orw22")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_orw22")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_qxg4f")
+"texture": null
 }],
 "loop": true,
 "name": &"Bite Left",
@@ -186,10 +179,10 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4e5tb")
-animation = &"Bite Right"
-frame_progress = 0.274366
+animation = &"Wake"
 
 [node name="NonCollidingHitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -213,6 +206,7 @@ wait_time = 0.05
 autostart = true
 
 [node name="DetectionRadius" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 

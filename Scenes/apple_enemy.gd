@@ -12,6 +12,7 @@ var target = null
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
+	$AnimatedSprite2D.play("Waddle")
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
 
