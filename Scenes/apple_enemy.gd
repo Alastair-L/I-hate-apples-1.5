@@ -52,4 +52,5 @@ func _on_non_colliding_hitbox_body_entered(body):
 
 
 func _on_charge_radius_body_entered(body):
+	pass
 	# Charge
