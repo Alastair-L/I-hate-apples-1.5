@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dxbg8j581t76o"]
+[gd_scene load_steps=30 format=3 uid="uid://dxbg8j581t76o"]
 
 [ext_resource type="Script" path="res://Scenes/apple_enemy.gd" id="1_0egdu"]
 [ext_resource type="Texture2D" uid="uid://dnxcpu4vkj45s" path="res://Sprites/IMG_1712.png" id="1_44agf"]
@@ -148,9 +148,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("22_nto2a")
 }],
-"loop": true,
+"loop": false,
 "name": &"Wake",
-"speed": 6.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -166,15 +166,19 @@ radius = 240.0
 height = 620.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ad4wo"]
-radius = 5000.0
+radius = 3000.0
 
-[node name="Apple Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1g7es"]
+radius = 1500.0
+
+[node name="Apple Enemy" type="CharacterBody2D"]
 position = Vector2(525, 393)
 collision_layer = 8
+collision_mask = 13
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_0egdu")
-navigation_agent = NodePath("Node2D/NavigationAgent2D")
+WADDLE_SPEED = null
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -195,22 +199,29 @@ position = Vector2(30.0001, -20)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5e5d")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Navigation" type="Node2D" parent="."]
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Node2D"]
-debug_enabled = true
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
 
-[node name="RecalculateNavigationTimer" type="Timer" parent="Node2D"]
+[node name="RecalculateNavigationTimer" type="Timer" parent="Navigation"]
 wait_time = 0.05
 autostart = true
 
-[node name="DetectionRadius" type="Area2D" parent="."]
+[node name="AwakeRadius" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AwakeRadius"]
 shape = SubResource("CircleShape2D_ad4wo")
 
+[node name="ChargeRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeRadius"]
+shape = SubResource("CircleShape2D_1g7es")
+
 [connection signal="body_entered" from="NonCollidingHitbox" to="." method="_on_non_colliding_hitbox_body_entered"]
-[connection signal="timeout" from="Node2D/RecalculateNavigationTimer" to="." method="set_movement_target"]
-[connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
+[connection signal="timeout" from="Navigation/RecalculateNavigationTimer" to="." method="set_movement_target"]
+[connection signal="body_entered" from="AwakeRadius" to="." method="_on_awake_radius_body_entered"]
+[connection signal="body_entered" from="ChargeRadius" to="." method="_on_charge_radius_body_entered"]

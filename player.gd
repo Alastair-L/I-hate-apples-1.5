@@ -63,7 +63,7 @@ func _physics_process(delta):
 	if move_direction == MOVE_DIRECTION.UP:
 		velocity.y = -1
 
-	var collision_info = move_and_collide(velocity *speed * delta)
+	var collision_info = move_and_collide(velocity * speed * delta)
 	if collision_info:
 		print("I collided with ", collision_info.get_collider().name)
 		move_direction = OPPOSITES[move_direction]
