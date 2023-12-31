@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 
 @export var WADDLE_SPEED = 700.0
+
+# Don't actually set these in the editor, it's just so they aren't shared accross instances
 @export var target: Node2D = null
 @export var navigation_agent: NavigationAgent2D = null
 
@@ -54,11 +56,16 @@ func _on_charge_radius_body_entered(body):
 	if abs(body.position.x - position.x) < 300:
 		return
 	
+	var frames_to_wait = 1.5
+	var time_for_full_animation = 7 / 12
+	var wait_time = frames_to_wait / 12
 	if body.position.x > position.x:
-		velocity = Vector2(30 * WADDLE_SPEED, 0)
 		$AnimatedSprite2D.play("Bite Right")
+		await get_tree().create_timer(wait_time).timeout
+		velocity = Vector2(30 * WADDLE_SPEED, 0)
 	else:	
 		$AnimatedSprite2D.play("Bite Left")
+		await get_tree().create_timer(wait_time).timeout
 		velocity = Vector2(-30 * WADDLE_SPEED, 0)
 	
 	move_and_slide()
