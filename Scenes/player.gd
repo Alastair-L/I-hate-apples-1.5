@@ -14,6 +14,8 @@ signal hit
 @export var speed = 150
 @export var move_direction = MOVE_DIRECTION.UP
 
+var immune = false
+
 func _ready():
 	print("Ready!")
 	$AnimatedSprite2D.play()
@@ -46,7 +48,8 @@ func _physics_process(delta):
 	if collision_info:
 		print("I collided with ", collision_info.get_collider().name)
 		if collision_info.get_collider().is_in_group("enemies"):
-			emit_signal("hit")
+			if !immune:
+				emit_signal("hit")
 		else:
 			move_direction = OPPOSITES[move_direction]
 
@@ -54,5 +57,10 @@ func _physics_process(delta):
 
 func _on_hit():
 	print("I'm hit!")
+	immune = true
+	$AnimatedSprite2D.stop()
+	await get_tree().create_timer(1).timeout
+	$AnimatedSprite2D.play()
+	immune = false
 	# Play animation
 	# Give immunity for a sec
