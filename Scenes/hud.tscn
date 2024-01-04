@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dupa5xnbrr604"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_c4kc0"]
+[ext_resource type="Script" path="res://Scenes/hud.gd" id="1_c4kc0"]
 
 [sub_resource type="Theme" id="Theme_66c68"]
 default_font_size = 70
