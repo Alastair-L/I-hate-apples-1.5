@@ -10,14 +10,14 @@ extends CharacterBody2D
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
-	#$AnimatedSprite2D.play("Waddle")
+	$AnimatedSprite2D.play("Asleep")
 	navigation_agent = $Navigation/NavigationAgent2D
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
 
 func set_movement_target():
 	if target:
-		navigation_agent.debug_enabled = true
+		#navigation_agent.debug_enabled = true
 		navigation_agent.target_position = target.global_position
 
 func _physics_process(delta):
@@ -57,8 +57,8 @@ func _on_charge_radius_body_entered(body):
 		return
 	
 	var frames_to_wait = 1.5
-	var time_for_full_animation = 7 / 12
-	var wait_time = frames_to_wait / 12
+	var animation_fps = 12
+	var wait_time = frames_to_wait / animation_fps
 	if body.position.x > position.x:
 		$AnimatedSprite2D.play("Bite Right")
 		await get_tree().create_timer(wait_time).timeout
