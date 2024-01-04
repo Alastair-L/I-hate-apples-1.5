@@ -11,7 +11,7 @@ const OPPOSITES = {
 
 signal hit
 
-@export var speed = 1500
+@export var speed = 150
 @export var move_direction = MOVE_DIRECTION.UP
 
 func _ready():
@@ -31,27 +31,6 @@ func _process(delta):
 	if Input.is_action_pressed(&"ui_up"):
 		move_direction = MOVE_DIRECTION.UP
 
-
-	#if velocity.length() > 0:
-		#velocity = velocity.normalized() * speed
-	#else:
-		#$AnimatedSprite2D.stop()
-
-	#position += velocity * speed * delta
-	
-	# Should never happen because the levels should be surrounded in walls
-	#position = position.clamp(Vector2.ZERO, screen_size)
-#
-	#if velocity.x != 0:
-		#$AnimatedSprite2D.animation = &"right"
-		#$AnimatedSprite2D.flip_v = false
-		#$Trail.rotation = 0
-		#$AnimatedSprite2D.flip_h = velocity.x < 0
-	#elif velocity.y != 0:
-		#$AnimatedSprite2D.animation = &"up"
-		#$AnimatedSprite2D.flip_v = velocity.y > 0
-		#$Trail.rotation = PI if velocity.y > 0 else 0
-
 func _physics_process(delta):
 	velocity = Vector2.ZERO
 	if move_direction == MOVE_DIRECTION.RIGHT:
@@ -63,26 +42,14 @@ func _physics_process(delta):
 	if move_direction == MOVE_DIRECTION.UP:
 		velocity.y = -1
 
-	var collision_info = move_and_collide(velocity * speed * delta)
+	var collision_info = move_and_collide(velocity * speed)
 	if collision_info:
 		print("I collided with ", collision_info.get_collider().name)
-		move_direction = OPPOSITES[move_direction]
+		if collision_info.get_collider().is_in_group("enemies"):
+			emit_signal("hit")
+		else:
+			move_direction = OPPOSITES[move_direction]
 
-
-func _on_area_entered(area):
-	print("hit!", area)
-	emit_signal("hit")
-	#if area is Wall:
-		#print("wall!")
-
-
-func _on_body_entered(body):
-	# This is either a wall or a shelf
-	print('hey!')
-	if body is TileMap:
-		print(body.get_layers_count())
-		
-		
 
 
 func _on_hit():

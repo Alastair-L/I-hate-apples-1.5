@@ -172,7 +172,7 @@ radius = 3000.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_1g7es"]
 radius = 1500.0
 
-[node name="Apple Enemy" type="CharacterBody2D"]
+[node name="Apple Enemy" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(525, 393)
 collision_layer = 8
 collision_mask = 13
@@ -184,15 +184,6 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4e5tb")
 animation = &"Bite Left"
-
-[node name="NonCollidingHitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="AppleShape" type="CollisionShape2D" parent="NonCollidingHitbox"]
-position = Vector2(30.0001, -20)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_v5e5d")
 
 [node name="AppleShape" type="CollisionShape2D" parent="."]
 position = Vector2(30.0001, -20)
@@ -221,7 +212,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeRadius"]
 shape = SubResource("CircleShape2D_1g7es")
 
-[connection signal="body_entered" from="NonCollidingHitbox" to="." method="_on_non_colliding_hitbox_body_entered"]
 [connection signal="timeout" from="Navigation/RecalculateNavigationTimer" to="." method="set_movement_target"]
 [connection signal="body_entered" from="AwakeRadius" to="." method="_on_awake_radius_body_entered"]
 [connection signal="body_entered" from="ChargeRadius" to="." method="_on_charge_radius_body_entered"]

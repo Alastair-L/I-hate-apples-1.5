@@ -99,7 +99,7 @@ height = 600.0
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_us7en")
 metadata/_edit_group_ = true
