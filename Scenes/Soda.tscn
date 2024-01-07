@@ -99,11 +99,13 @@ radius = 134.0
 height = 492.0
 
 [node name="Soda" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(49, 10)
 sprite_frames = SubResource("SpriteFrames_a1sbe")
-frame_progress = 0.814137
+frame_progress = 0.493051
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9, -46)
