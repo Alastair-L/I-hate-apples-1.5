@@ -106,9 +106,9 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o8khw")
-animation = &"walk"
-frame = 4
-frame_progress = 0.766665
+animation = &"run"
+frame = 10
+frame_progress = 0.699044
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(10, -95)
