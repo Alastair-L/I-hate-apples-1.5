@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ftadpvplkegh"]
+[gd_scene load_steps=16 format=3 uid="uid://ftadpvplkegh"]
 
 [ext_resource type="Texture2D" uid="uid://bvyy2ilr2ooiq" path="res://Sprites/Player/1.png" id="1_5pcyw"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_us7en"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bt3jsxnw0cd86" path="res://Sprites/Player/9.png" id="9_rnbgg"]
 [ext_resource type="Texture2D" uid="uid://5whytoxry1pb" path="res://Sprites/Player/10.png" id="10_m7mcc"]
 [ext_resource type="Texture2D" uid="uid://dglddm0frew0d" path="res://Sprites/Player/11.png" id="11_wur6j"]
+[ext_resource type="Texture2D" uid="uid://bev6x64kiar4f" path="res://Sprites/light.png" id="13_1qmjq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o8khw"]
 animations = [{
@@ -113,5 +114,12 @@ frame_progress = 0.699044
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(10, -95)
 shape = SubResource("CapsuleShape2D_8d0jg")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(6.33334, -201)
+scale = Vector2(2.96728, 2.33642)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("13_1qmjq")
 
 [connection signal="hit" from="." to="." method="_on_hit"]
