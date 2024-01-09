@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgsvj8n4ha0pv"]
 
-[ext_resource type="Texture2D" uid="uid://tonsnhiftga2" path="res://Sprites/Tiles and Tilemap/Tile Map.png" id="1_y8rpi"]
-[ext_resource type="Texture2D" uid="uid://cxra5vp4wjed5" path="res://Sprites/Wide apple.png" id="2_vebvp"]
+[ext_resource type="Texture2D" uid="uid://blt8x07jnxro1" path="res://Sprites/Menu/IMG_1850.png" id="1_e2ctc"]
+[ext_resource type="Texture2D" uid="uid://c8ai0i0x6uvkq" path="res://Sprites/Menu/IMG_1851.png" id="3_0upuy"]
 [ext_resource type="Script" path="res://Scenes/StartGameButton.gd" id="3_fnyf3"]
 
 [node name="Main Menu" type="Control"]
@@ -19,49 +19,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_y8rpi")
+texture = ExtResource("1_e2ctc")
 expand_mode = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -306.0
-offset_top = -181.5
-offset_right = 306.0
-offset_bottom = 181.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+[node name="StartGameButton" type="Button" parent="."]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
-text = "I Hate Apples 2"
-horizontal_alignment = 1
-
-[node name="PicContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/PicContainer"]
-layout_mode = 2
-texture = ExtResource("2_vebvp")
-expand_mode = 2
-
-[node name="StartGameButton" type="Button" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Start game"
+offset_left = 444.0
+offset_top = 302.0
+offset_right = 705.0
+offset_bottom = 406.0
+text = "START GAME"
+icon_alignment = 1
 script = ExtResource("3_fnyf3")
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/StartGameButton" to="PanelContainer/VBoxContainer/StartGameButton" method="_on_pressed"]
+[node name="Img1851" type="Sprite2D" parent="."]
+position = Vector2(572.165, 398)
+scale = Vector2(0.327728, 0.292742)
+texture = ExtResource("3_0upuy")
+
+[connection signal="pressed" from="StartGameButton" to="StartGameButton" method="_on_pressed"]
