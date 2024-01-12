@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ftadpvplkegh"]
+[gd_scene load_steps=33 format=3 uid="uid://ftadpvplkegh"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_us7en"]
 [ext_resource type="Texture2D" uid="uid://mdlx0aeolwmc" path="res://Sprites/TheRealPlayer/Back/1.png" id="2_3i4df"]
@@ -24,6 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://c0wxdpcepgvkv" path="res://Sprites/TheRealPlayer/Front/9.png" id="21_e067g"]
 [ext_resource type="Texture2D" uid="uid://cadis7kji2h58" path="res://Sprites/TheRealPlayer/Front/10.png" id="22_g3fnf"]
 [ext_resource type="Texture2D" uid="uid://dl6q74yegwigx" path="res://Sprites/TheRealPlayer/Front/11.png" id="23_gm36l"]
+[ext_resource type="Texture2D" uid="uid://de1mdtp2ksn80" path="res://Sprites/TheRealPlayer/Spin/Layer 2 copy 2.png" id="24_1keu4"]
+[ext_resource type="Texture2D" uid="uid://cgaa43nubpxa3" path="res://Sprites/TheRealPlayer/Spin/Layer 2 copy 3.png" id="25_lnilx"]
+[ext_resource type="Texture2D" uid="uid://b5qho7a5megus" path="res://Sprites/TheRealPlayer/Spin/Layer 2 copy 4.png" id="26_1lr4w"]
+[ext_resource type="Texture2D" uid="uid://bicegciqumnkr" path="res://Sprites/TheRealPlayer/Spin other/Layer 2 copy 2.png" id="27_e24h6"]
+[ext_resource type="Texture2D" uid="uid://pyvxb32jovm8" path="res://Sprites/TheRealPlayer/Spin other/Layer 2 copy 3.png" id="28_1u1ge"]
+[ext_resource type="Texture2D" uid="uid://6ic8bquqoqj0" path="res://Sprites/TheRealPlayer/Spin other/Layer 2 copy 4.png" id="29_uk1ab"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o8khw"]
 animations = [{
@@ -102,6 +108,34 @@ animations = [{
 "loop": true,
 "name": &"run forward",
 "speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_1keu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_lnilx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_1lr4w")
+}],
+"loop": true,
+"name": &"spin one",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_e24h6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_1u1ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_uk1ab")
+}],
+"loop": true,
+"name": &"spin two",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -195,9 +229,8 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o8khw")
-animation = &"run forward"
-frame = 3
-frame_progress = 0.162466
+animation = &"spin one"
+frame_progress = 0.634323
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.666667, -25)
