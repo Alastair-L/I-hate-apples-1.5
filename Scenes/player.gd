@@ -20,18 +20,37 @@ func _ready():
 	print("Ready!")
 	$AnimatedSprite2D.play()
 
+func handle_player_input():
+	if Input.is_action_pressed(&"ui_right"):
+		move_direction = MOVE_DIRECTION.RIGHT
+		handle_move_animation()
+	if Input.is_action_pressed(&"ui_left"):
+		move_direction = MOVE_DIRECTION.LEFT
+		handle_move_animation()
+	if Input.is_action_pressed(&"ui_down"):
+		move_direction = MOVE_DIRECTION.DOWN
+		handle_move_animation()
+	if Input.is_action_pressed(&"ui_up"):
+		move_direction = MOVE_DIRECTION.UP
+		handle_move_animation()
+
+
+func handle_move_animation():
+	match move_direction:
+		MOVE_DIRECTION.RIGHT:
+			$AnimatedSprite2D.play("walk backward")
+		MOVE_DIRECTION.LEFT:
+			$AnimatedSprite2D.play("walk backward")
+		MOVE_DIRECTION.UP:
+			$AnimatedSprite2D.play("walk backward")
+		MOVE_DIRECTION.DOWN:
+			$AnimatedSprite2D.play("walk forward")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed(&"ui_right"):
-		move_direction = MOVE_DIRECTION.RIGHT
-	if Input.is_action_pressed(&"ui_left"):
-		move_direction = MOVE_DIRECTION.LEFT
-	if Input.is_action_pressed(&"ui_down"):
-		move_direction = MOVE_DIRECTION.DOWN
-	if Input.is_action_pressed(&"ui_up"):
-		move_direction = MOVE_DIRECTION.UP
+	handle_player_input()
+		
+
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
