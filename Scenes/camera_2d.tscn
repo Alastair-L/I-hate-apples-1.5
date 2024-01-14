@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ibr5lnrt55td"]
+
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_0y1cx"]
+[ext_resource type="PackedScene" uid="uid://dupa5xnbrr604" path="res://Scenes/hud.tscn" id="2_gh21n"]
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(0.08, 0.08)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+script = ExtResource("1_0y1cx")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.870588, 0.870588, 0.870588, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" node_paths=PackedStringArray("timer_node") instance=ExtResource("2_gh21n")]
+timer_node = NodePath("")

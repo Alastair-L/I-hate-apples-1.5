@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://68qhucqsqcuf"]
+[gd_scene load_steps=17 format=3 uid="uid://68qhucqsqcuf"]
 
 [ext_resource type="Texture2D" uid="uid://dkrdg3fupaale" path="res://Sprites/Soda Sprite Sheet.png" id="1_6sjmv"]
+[ext_resource type="Script" path="res://Scripts/Soda.gd" id="1_te0re"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04m0f"]
 atlas = ExtResource("1_6sjmv")
@@ -98,9 +99,13 @@ animations = [{
 radius = 134.0
 height = 492.0
 
-[node name="Soda" type="CharacterBody2D"]
+[node name="Soda" type="CharacterBody2D" groups=["Power ups"]]
+scale = Vector2(1.5, 1.5)
+collision_layer = 16
+collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
+script = ExtResource("1_te0re")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(49, 10)

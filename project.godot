@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="I hate apples 1.5"
-run/main_scene="res://Scenes/main_menu.tscn"
+run/main_scene="res://Scenes/Level 1/Level 1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
+window/size/mode=2
 window/size/window_width_override=1152
 window/size/window_height_override=648
 
@@ -31,6 +32,7 @@ version_control/autoload_on_startup=true
 2d_physics/layer_2="Shelf"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Enemy"
+2d_physics/layer_5="Power ups"
 
 [rendering]
 

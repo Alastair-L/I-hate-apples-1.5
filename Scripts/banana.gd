@@ -3,8 +3,8 @@ extends CharacterBody2D
 @export var ROTATION_SPEED = -4
 
 # Movement
-@onready var _follow :PathFollow2D = get_parent()
-@onready var myline: Path2D = get_parent().get_parent()
+@onready var _follow :PathFollow2D = $"../Path2D/PathFollow2D"
+@onready var myline: Path2D = $"../Path2D"
 
 @onready var tween_values = [0, 1]
 var _speed :float = 1200.0
@@ -27,7 +27,7 @@ func _ready():
 	_start_tween()
 
 func _physics_process(delta):
-	pass
+	position = _follow.position
 	#var length = myline.curve.get_baked_length()
 	#if _follow.get_progress_ratio() >= 0.9:
 		#print(_follow.get_progress(), direction, _speed * delta * direction)

@@ -11,40 +11,65 @@ const OPPOSITES = {
 
 signal hit
 
-@export var speed = 150
-@export var move_direction = MOVE_DIRECTION.UP
+@export var BASE_SPEED = 100
 
+var intended_move_direction = MOVE_DIRECTION.UP
+var move_direction = MOVE_DIRECTION.UP
+
+var wall_speed_boost = 0
+var soft_drink_speed_boost = 0
 var immune = false
+var can_change_direction = true
 
 func _ready():
 	print("Ready!")
 	$AnimatedSprite2D.play()
 
 func handle_player_input():
-	if Input.is_action_pressed(&"ui_right"):
-		move_direction = MOVE_DIRECTION.RIGHT
-		handle_move_animation()
-	if Input.is_action_pressed(&"ui_left"):
-		move_direction = MOVE_DIRECTION.LEFT
-		handle_move_animation()
-	if Input.is_action_pressed(&"ui_down"):
-		move_direction = MOVE_DIRECTION.DOWN
-		handle_move_animation()
-	if Input.is_action_pressed(&"ui_up"):
-		move_direction = MOVE_DIRECTION.UP
+	if Input.is_action_just_pressed(&"ui_right"):
+		intended_move_direction = MOVE_DIRECTION.RIGHT
+	if Input.is_action_just_pressed(&"ui_left"):
+		intended_move_direction = MOVE_DIRECTION.LEFT
+	if Input.is_action_just_pressed(&"ui_down"):
+		intended_move_direction = MOVE_DIRECTION.DOWN
+	if Input.is_action_just_pressed(&"ui_up"):
+		intended_move_direction = MOVE_DIRECTION.UP
+
+	# BTW Zander if you're reading this all of this duplication is bad
+	# code style - I'm just doing it to get it working.
+	if !can_change_direction:
+		return
+
+	if intended_move_direction != move_direction:
+		move_direction = intended_move_direction
+		wall_speed_boost = max(0, wall_speed_boost - 40)
 		handle_move_animation()
 
 
 func handle_move_animation():
-	match move_direction:
-		MOVE_DIRECTION.RIGHT:
-			$AnimatedSprite2D.play("walk right")
-		MOVE_DIRECTION.LEFT:
-			$AnimatedSprite2D.play("walk left")
-		MOVE_DIRECTION.UP:
-			$AnimatedSprite2D.play("walk backward")
-		MOVE_DIRECTION.DOWN:
-			$AnimatedSprite2D.play("walk forward")
+	var current_frame = $AnimatedSprite2D.get_frame()
+	var current_progress = $AnimatedSprite2D.get_frame_progress()
+	if BASE_SPEED == 200:
+		match move_direction:
+			MOVE_DIRECTION.RIGHT:
+				$AnimatedSprite2D.play("run right")
+			MOVE_DIRECTION.LEFT:
+				$AnimatedSprite2D.play("run left")
+			MOVE_DIRECTION.UP:
+				$AnimatedSprite2D.play("run backward")
+			MOVE_DIRECTION.DOWN:
+				$AnimatedSprite2D.play("run forward")
+	if BASE_SPEED == 100:
+		match move_direction:
+			MOVE_DIRECTION.RIGHT:
+				$AnimatedSprite2D.play("walk right")
+			MOVE_DIRECTION.LEFT:
+				$AnimatedSprite2D.play("walk left")
+			MOVE_DIRECTION.UP:
+				$AnimatedSprite2D.play("walk backward")
+			MOVE_DIRECTION.DOWN:
+				$AnimatedSprite2D.play("walk forward")
+	$AnimatedSprite2D.set_frame_and_progress(current_frame, current_progress)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -53,6 +78,7 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	var speed = BASE_SPEED + wall_speed_boost
 	velocity = Vector2.ZERO
 	if move_direction == MOVE_DIRECTION.RIGHT:
 		velocity.x = 1
@@ -69,9 +95,23 @@ func _physics_process(delta):
 		if collision_info.get_collider().is_in_group("enemies"):
 			if !immune:
 				emit_signal("hit")
+		elif collision_info.get_collider().is_in_group("Power ups"):
+			collision_info.get_collider().queue_free()
+			BASE_SPEED *= 2
+			await get_tree().create_timer(5).timeout
+			BASE_SPEED /= 2
 		else:
+			# We've collided with a wall
 			$AnimatedSprite2D.play("spin one")
-			move_direction = OPPOSITES[move_direction]
+			wall_speed_boost = 60
+			intended_move_direction = OPPOSITES[move_direction]
+			move_direction = intended_move_direction
+			can_change_direction = false
+			await get_tree().create_timer(0.2).timeout
+			wall_speed_boost = 120			
+			can_change_direction = true
+			
+			
 
 
 
@@ -81,5 +121,3 @@ func _on_hit():
 	$AnimatedSprite2D.play("spin one")
 	await get_tree().create_timer(1).timeout
 	immune = false
-	# Play animation
-	# Give immunity for a sec
