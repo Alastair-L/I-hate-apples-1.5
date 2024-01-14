@@ -78,7 +78,7 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	var speed = BASE_SPEED + wall_speed_boost
+	var speed = (BASE_SPEED + wall_speed_boost * 0)*1
 	velocity = Vector2.ZERO
 	if move_direction == MOVE_DIRECTION.RIGHT:
 		velocity.x = 1
