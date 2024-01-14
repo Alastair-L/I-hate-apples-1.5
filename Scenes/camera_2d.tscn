@@ -14,5 +14,4 @@ color = Color(0.870588, 0.870588, 0.870588, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="CanvasLayer" node_paths=PackedStringArray("timer_node") instance=ExtResource("2_gh21n")]
-timer_node = NodePath("")
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_gh21n")]

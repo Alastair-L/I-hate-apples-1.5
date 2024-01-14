@@ -118,6 +118,7 @@ func _physics_process(delta):
 func _on_hit():
 	print("I'm hit!")
 	immune = true
+	wall_speed_boost = 0
 	$AnimatedSprite2D.play("spin one")
 	await get_tree().create_timer(1).timeout
 	immune = false
