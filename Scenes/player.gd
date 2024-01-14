@@ -38,9 +38,9 @@ func handle_player_input():
 func handle_move_animation():
 	match move_direction:
 		MOVE_DIRECTION.RIGHT:
-			$AnimatedSprite2D.play("walk backward")
+			$AnimatedSprite2D.play("walk right")
 		MOVE_DIRECTION.LEFT:
-			$AnimatedSprite2D.play("walk backward")
+			$AnimatedSprite2D.play("walk left")
 		MOVE_DIRECTION.UP:
 			$AnimatedSprite2D.play("walk backward")
 		MOVE_DIRECTION.DOWN:

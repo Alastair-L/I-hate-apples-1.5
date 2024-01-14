@@ -403,12 +403,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o8khw")
-<<<<<<< HEAD
-animation = &"walk backward"
-=======
-animation = &"run backward"
-frame_progress = 0.275542
->>>>>>> 3de325cca1e3a126c45fec59d586c997794bc6fa
+animation = &"run forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.666667, -25)
