@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://blt8x07jnxro1" path="res://Sprites/Menu/IMG_1850.png" id="1_e2ctc"]
 [ext_resource type="Texture2D" uid="uid://c8ai0i0x6uvkq" path="res://Sprites/Menu/IMG_1851.png" id="3_0upuy"]
-[ext_resource type="Script" path="res://Scenes/StartGameButton.gd" id="3_fnyf3"]
+[ext_resource type="Script" path="res://Scripts/StartGameButton.gd" id="3_fnyf3"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
