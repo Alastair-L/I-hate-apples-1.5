@@ -70,6 +70,7 @@ func _physics_process(delta):
 			if !immune:
 				emit_signal("hit")
 		else:
+			$AnimatedSprite2D.play("spin one")
 			move_direction = OPPOSITES[move_direction]
 
 
@@ -77,9 +78,8 @@ func _physics_process(delta):
 func _on_hit():
 	print("I'm hit!")
 	immune = true
-	$AnimatedSprite2D.stop()
+	$AnimatedSprite2D.play("spin one")
 	await get_tree().create_timer(1).timeout
-	$AnimatedSprite2D.play()
 	immune = false
 	# Play animation
 	# Give immunity for a sec
