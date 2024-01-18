@@ -49,7 +49,7 @@ func handle_player_input():
 func handle_move_animation():
 	var current_frame = $AnimatedSprite2D.get_frame()
 	var current_progress = $AnimatedSprite2D.get_frame_progress()
-	if BASE_SPEED == 200:
+	if soft_drink_speed_boost > 0:
 		match move_direction:
 			MOVE_DIRECTION.RIGHT:
 				$AnimatedSprite2D.play("run right")
@@ -59,7 +59,7 @@ func handle_move_animation():
 				$AnimatedSprite2D.play("run backward")
 			MOVE_DIRECTION.DOWN:
 				$AnimatedSprite2D.play("run forward")
-	if BASE_SPEED == 100:
+	else:
 		match move_direction:
 			MOVE_DIRECTION.RIGHT:
 				$AnimatedSprite2D.play("walk right")
@@ -78,7 +78,7 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	var speed = (BASE_SPEED + wall_speed_boost * 0)*1
+	var speed = (BASE_SPEED + soft_drink_speed_boost + wall_speed_boost * 0)*1
 	velocity = Vector2.ZERO
 	if move_direction == MOVE_DIRECTION.RIGHT:
 		velocity.x = 1
@@ -91,29 +91,29 @@ func _physics_process(delta):
 
 	var collision_info = move_and_collide(velocity * speed)
 	if collision_info:
-		print("I collided with ", collision_info.get_collider().name)
-		if collision_info.get_collider().is_in_group("enemies"):
-			if !immune:
-				emit_signal("hit")
-		elif collision_info.get_collider().is_in_group("Power ups"):
-			collision_info.get_collider().queue_free()
-			BASE_SPEED *= 2
-			await get_tree().create_timer(5).timeout
-			BASE_SPEED /= 2
-		else:
-			# We've collided with a wall
-			$AnimatedSprite2D.play("spin one")
-			wall_speed_boost = 60
-			intended_move_direction = OPPOSITES[move_direction]
-			move_direction = intended_move_direction
-			can_change_direction = false
-			await get_tree().create_timer(0.2).timeout
-			wall_speed_boost = 120			
-			can_change_direction = true
+		handle_collision(collision_info)
 			
 			
-
-
+func handle_collision(collision_info): 
+	print("I collided with ", collision_info.get_collider().name)
+	if collision_info.get_collider().is_in_group("enemies"):
+		if !immune:
+			emit_signal("hit")
+	elif collision_info.get_collider().is_in_group("Power ups"):
+		collision_info.get_collider().on_pickup()
+		soft_drink_speed_boost += 50
+		await get_tree().create_timer(5).timeout
+		soft_drink_speed_boost -= 50
+	else:
+		# We've collided with a wall
+		$AnimatedSprite2D.play("spin one")
+		wall_speed_boost = 60
+		intended_move_direction = OPPOSITES[move_direction]
+		move_direction = intended_move_direction
+		can_change_direction = false
+		await get_tree().create_timer(0.2).timeout
+		wall_speed_boost = 120			
+		can_change_direction = true
 
 func _on_hit():
 	print("I'm hit!")

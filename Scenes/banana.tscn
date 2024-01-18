@@ -8,9 +8,9 @@ radius = 300.0
 
 [sub_resource type="Curve2D" id="Curve2D_sv0w0"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1567, 561, 0, 0, 0, 0, 1057, -1340, 0, 0, 0, 0, 2505, 1828)
+"points": PackedVector2Array(0, 0, 0, 0, 4881.96, 3197.76, 0, 0, 0, 0, 6688.81, -1683.23, 0, 0, 0, 0, 819.772, -4000.91, 0, 0, 0, 0, -1707.17, 425.184, 0, 0, 0, 0, 1500.31, -500.258, 0, 0, 0, 0, 3705.81, 375.625, 0, 0, 0, 0, 4881.96, 3197.76)
 }
-point_count = 3
+point_count = 7
 
 [node name="Banana" type="Node2D"]
 
@@ -31,5 +31,5 @@ shape = SubResource("CircleShape2D_vbhck")
 curve = SubResource("Curve2D_sv0w0")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-1567, 561)
-rotation = -0.626958
+position = Vector2(4881.96, 3197.76)
+rotation = -1.21626

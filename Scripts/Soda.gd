@@ -14,7 +14,7 @@ const OPPOSITES = {
 @export var move_direction = MOVE_DIRECTION.RIGHT
 
 func _ready():
-	$AnimatedSprite2D.play()
+	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -34,3 +34,9 @@ func _physics_process(delta):
 		move_direction = OPPOSITES[move_direction]
 		$AnimatedSprite2D.flip_h = !$AnimatedSprite2D.flip_h
 		
+func on_pickup(): 
+	print("Slurped")
+	$CollisionShape2D.disabled = true
+	$AnimatedSprite2D.play("Death")
+	await $AnimatedSprite2D.animation_finished
+	queue_free()

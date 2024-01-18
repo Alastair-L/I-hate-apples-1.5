@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dupa5xnbrr604" path="res://Scenes/hud.tscn" id="2_gh21n"]
 
 [node name="Camera2D" type="Camera2D"]
-zoom = Vector2(0.08, 0.08)
+zoom = Vector2(0.1, 0.1)
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 script = ExtResource("1_0y1cx")
