@@ -11,15 +11,17 @@ config_version=5
 [application]
 
 config/name="I hate apples 1.5"
-run/main_scene="res://Scenes/Level 1/[Old] Level 1.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://Sprites/Wide apple.ico"
 
 [display]
 
 window/size/mode=2
 window/size/window_width_override=1152
 window/size/window_height_override=648
+window/stretch/mode="canvas_items"
 
 [editor]
 
