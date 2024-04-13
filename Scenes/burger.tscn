@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0gk75tonw18v"]
+[gd_scene load_steps=17 format=3 uid="uid://d0gk75tonw18v"]
 
+[ext_resource type="Script" path="res://Scenes/burger.gd" id="1_pdn3q"]
 [ext_resource type="Texture2D" uid="uid://7nxa7qkdflyr" path="res://Sprites/burger sprite sheet.png" id="1_wcuo1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s050x"]
@@ -98,7 +99,8 @@ animations = [{
 radius = 155.0
 height = 536.0
 
-[node name="Burger" type="CharacterBody2D"]
+[node name="Burger" type="CharacterBody2D" groups=["burger"]]
+script = ExtResource("1_pdn3q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(21, 22.5)

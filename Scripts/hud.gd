@@ -33,3 +33,7 @@ func flash_timer():
 	timer.start()
 	timer.connect("timeout", stop_flashing)
 
+
+
+func _on_popup_timer_timeout():
+	$TextureRect.queue_free()

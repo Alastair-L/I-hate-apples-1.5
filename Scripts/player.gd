@@ -83,6 +83,8 @@ func handle_collision(collision_info):
 		soft_drink_speed_boost += 50
 		await get_tree().create_timer(5).timeout
 		soft_drink_speed_boost -= 50
+	elif collision_info.get_collider().is_in_group("burger"):
+		collision_info.get_collider().on_pickup()
 	else:
 		# We've collided with a wall
 		$AnimatedSprite2D.play("spin one")
