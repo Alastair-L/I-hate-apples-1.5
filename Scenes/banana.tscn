@@ -31,5 +31,5 @@ shape = SubResource("CircleShape2D_vbhck")
 curve = SubResource("Curve2D_sv0w0")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(4881.96, 3197.76)
-rotation = -1.21626
+position = Vector2(3923.98, 1431.48)
+rotation = -0.690462

@@ -2,14 +2,25 @@ extends CharacterBody2D
 
 signal hit
 
-@export var BASE_SPEED = 100
+@export var BASE_SPEED = 60
 
+enum MOVE_DIRECTION { LEFT, RIGHT, UP, DOWN }
+
+const OPPOSITES = {
+	MOVE_DIRECTION.LEFT: MOVE_DIRECTION.RIGHT,
+	MOVE_DIRECTION.RIGHT: MOVE_DIRECTION.LEFT,
+	MOVE_DIRECTION.UP: MOVE_DIRECTION.DOWN,
+	MOVE_DIRECTION.DOWN: MOVE_DIRECTION.UP,
+}
+
+var move_direction = MOVE_DIRECTION.UP
 var intended_move_direction = MOVE_DIRECTION.UP
 
 var wall_speed_boost = 0
 var soft_drink_speed_boost = 0
 var immune = false
 var can_change_direction = true
+
 
 func _ready():
 	print("Ready!")
@@ -27,8 +38,8 @@ func handle_player_input():
 
 	# BTW Zander if you're reading this all of this duplication is bad
 	# code style - I'm just doing it to get it working.
-	if !can_change_direction:
-		return
+	#if !can_change_direction:
+		#return
 
 	if intended_move_direction != move_direction:
 		move_direction = intended_move_direction
@@ -68,6 +79,17 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	var speed = (BASE_SPEED + soft_drink_speed_boost + wall_speed_boost * 0)*1
+	velocity = Vector2.ZERO
+	if move_direction == MOVE_DIRECTION.RIGHT:
+		velocity.x = 1
+	if move_direction == MOVE_DIRECTION.LEFT:
+		velocity.x = -1
+	if move_direction == MOVE_DIRECTION.DOWN:
+		velocity.y = 1
+	if move_direction == MOVE_DIRECTION.UP:
+		velocity.y = -1
+
 	var collision_info = move_and_collide(velocity * speed)
 	if collision_info:
 		handle_collision(collision_info)
