@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ftadpvplkegh"]
+[gd_scene load_steps=56 format=3 uid="uid://ftadpvplkegh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_us7en"]
 [ext_resource type="Texture2D" uid="uid://mdlx0aeolwmc" path="res://Sprites/TheRealPlayer/Back/1.png" id="2_3i4df"]
@@ -52,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://djrdujrvq2ijs" path="res://Sprites/TheRealPlayer/Walk Right/9.png" id="43_qvivd"]
 [ext_resource type="Texture2D" uid="uid://diqoqi4jhsdwd" path="res://Sprites/TheRealPlayer/Walk Right/10.png" id="44_t4lby"]
 [ext_resource type="Texture2D" uid="uid://bxi2wivxax4rg" path="res://Sprites/TheRealPlayer/Walk Right/11.png" id="45_jx72q"]
+[ext_resource type="Script" path="res://Scripts/bouncy_movement.gd" id="53_41csx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o8khw"]
 animations = [{
@@ -416,6 +417,8 @@ energy = 0.5
 shadow_enabled = true
 texture = ExtResource("13_1qmjq")
 
-[connection signal="hit" from="." to="." method="_on_hit"]
+[node name="BouncyMovement" type="Node" parent="."]
+script = ExtResource("53_41csx")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="handle_move_animation"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="handle_move_animation"]
